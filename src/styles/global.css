@@ -1,0 +1,49 @@
+/* src/styles/global.css */
+@import "tailwindcss";
+
+/* Override and extend the default .container utility for v4 */
+@utility container {
+    margin-inline: auto;
+    /* Centers the container automatically (center: true) */
+    padding-inline: 2rem;
+    /* Default padding (2rem) */
+
+    /* Apply responsive padding breakpoints exactly like your old config */
+    @media (width >=theme(--breakpoint-sm)) {
+        padding-inline: 2.5rem;
+    }
+
+    @media (width >=theme(--breakpoint-lg)) {
+        padding-inline: 3rem;
+    }
+
+    @media (width >=theme(--breakpoint-xl)) {
+        padding-inline: 3.5rem;
+    }
+
+    @media (width >=theme(--breakpoint-2xl)) {
+        padding-inline: 4rem;
+    }
+}
+
+/* Lenis Recommended Core Styles (Keep these below your utility) */
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis-scrolling iframe {
+    pointer-events: none;
+}

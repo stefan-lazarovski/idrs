@@ -1,0 +1,163 @@
+---
+// src/pages/projects/[id].astro
+import { getCollection, render } from "astro:content";
+import { Icon } from "astro-icon/components";
+import Layout from "../../layouts/Layout.astro";
+import { Image } from "astro:assets";
+
+// 1. Static Paths Generation & Pagination Logic
+export async function getStaticPaths() {
+  // Fetch active projects and order alphabetically by title
+  const allProjects = await getCollection("projects");
+  const activeProjects = allProjects
+    .filter((p) => p.data.isActive)
+    .sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+  return activeProjects.map((project, index) => {
+    const prevProject = index > 0 ? activeProjects[index - 1] : null;
+    const nextProject =
+      index < activeProjects.length - 1 ? activeProjects[index + 1] : null;
+
+    return {
+      params: { id: project.id },
+      props: { project, prevProject, nextProject },
+    };
+  });
+}
+
+// 2. Extract context structures passed from getStaticPaths
+const { project, prevProject, nextProject } = Astro.props;
+const { title, description, thumbnail, industry, technologies, url } =
+  project.data;
+
+// 3. Compile the Markdown body content
+const { Content } = await render(project);
+
+// 4. Construct Clean SEO Strings
+const seoTitle = `${title} | StefDev Portfolio`;
+const seoDesc =
+  description ||
+  `Learn more about ${title}, a web development project by StefDev.`;
+const seoKeywords = `web development project, ${title}, StefDev portfolio, Astro projects, front-end developer`;
+const seoImage = thumbnail || "https://stefdev.org/images/seo/meta_image.jpg";
+---
+
+<Layout title={seoTitle} description={seoDesc}>
+  <fragment slot="head">
+    <meta name="keywords" content={seoKeywords} />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={seoTitle} />
+    <meta property="og:description" content={seoDesc} />
+    <meta property="og:image" content={seoImage} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={seoTitle} />
+    <meta name="twitter:description" content={seoDesc} />
+    <meta name="twitter:image" content={seoImage} />
+  </fragment>
+
+  <section class="page-header section-padding--y mt-20">
+    <div class="container text-center">
+      <h1>{title}</h1>
+    </div>
+  </section>
+  <section class="project-main">
+    <div class="container">
+      <div class="content">
+        <div class="thumbnail mb-5 lg:mb-10">
+          <!-- <img src={thumbnail} alt={title} /> -->
+          <Image src={project.data.thumbnail} alt={title} widths={[240, 480, 720]} loading="lazy" />
+        </div>
+        <div class="project-body">
+          <div class="meta flex flex-col gap-10">
+            <div class="item">
+              <h6 class="text-secondary font-light border-b border-light pb-2">
+                Industry
+              </h6>
+              <h5 class="pt-2">{industry}</h5>
+            </div>
+
+            <div class="item">
+              <h6 class="text-secondary font-light border-b border-light pb-2">
+                Technologies
+              </h6>
+              {
+                /* Maps out our refactored string-to-array Zod transform cleanly */
+              }
+              <h5 class="pt-2">{technologies.join(", ")}</h5>
+            </div>
+
+            <div class="item">
+              <h6 class="text-secondary font-light border-b border-light pb-2">
+                Website link
+              </h6>
+              <h5 class="pt-2">
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="hover:text-yellow-500 transition-colors"
+                >
+                  {url}
+                </a>
+              </h5>
+            </div>
+          </div>
+
+          <div class="dynamic-content col-span-8">
+            <Content />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="project-navigation section-padding--y">
+    <div class="container grid grid-cols-2 gap-10">
+    {prevProject && (
+      <a href={`/projects/${prevProject.id}`} class="link link--prev flex items-center gap-3">
+        {/* <img src={prevProject.data.thumbnail} alt={prevProject.data.title} /> */}
+        <Image src={prevProject.data.thumbnail} alt={prevProject.data.title} widths={[240, 480, 720]} loading="lazy" />
+        <h5>Previous project</h5>
+        <span class="icon"><Icon name="corner-down-left-line" class="w-8 h-8" /></span>
+      </a>
+    )}
+    {nextProject && (
+      <a href={`/projects/${nextProject.id}`} class="link link--next flex items-center gap-3 justify-end">
+        {/* <img src={nextProject.data.thumbnail} alt={nextProject.data.title} /> */}
+        <Image src={nextProject.data.thumbnail} alt={nextProject.data.title} widths={[240, 480, 720]} loading="lazy" />
+        <h5>Next project</h5>
+        <span class="icon"><Icon name="corner-down-right-line" class="w-8 h-8" /></span>
+      </a>
+    )}
+  </div>
+  </section>
+</Layout>
+
+<style lang="scss">
+  /* Astro scope styles remain safely isolated locally */
+  .dynamic-content {
+    :global(h1),
+    :global(h2),
+    :global(h3),
+    :global(h4),
+    :global(h5),
+    :global(h6) {
+      margin-bottom: max(1rem, 1.3vw);
+    }
+
+    :global(hr) {
+      width: 100%;
+      margin: 1rem 0;
+    }
+  }
+
+  .text-container {
+    @media (min-width: 992px) {
+      width: max(600px, 60vw);
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+</style>
