@@ -358,13 +358,16 @@ ul.list {
     position: fixed;
     bottom: 3vw;
     right: 3vw;
-    width: max(3rem, 3vw);
-    height: max(3rem, 3vw);
+    width: max(3rem, 2.5vw);
+    height: max(3rem, 2.5vw);
     display: grid;
     place-items: center;
-    border: 1px solid var(--border-light);
+    // border: 1px solid var(--border-light);
+    background-color: var(--idrs-accent);
+    border-radius: 10px;
     cursor: pointer;
     transition: .2s all var(--ease1);
+    color: var(--idrs-text);
 
     &:hover,
     &:focus {
@@ -748,15 +751,6 @@ $sec-padd: max(4rem, 7vw);
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
-
-                a {
-                    font-size: 15px;
-                    // font-size: var(--fs-md);
-                    // font-size: var(--fs-lg);
-                    // font-size: clamp(2rem, 5vw + 1.5rem, 6rem);
-                    font-family: var(--font-bold);
-                    text-transform: uppercase;
-                }
             }
         }
     }
@@ -810,18 +804,6 @@ $sec-padd: max(4rem, 7vw);
         img {
             width: max(7rem, 6vw);
         }
-    }
-}
-
-.badge {
-    border: 1px solid var(--dark2);
-    font-size: 15px;
-    padding: 2px 12px;
-    transition: .3s all var(--ease1);
-
-    &.active,
-    &:hover {
-        border-color: var(--primary);
     }
 }
 
@@ -1045,11 +1027,11 @@ $sec-padd: max(4rem, 7vw);
     margin: 0 0 14px;
 }
 
-.idrs-countdown__grid {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-}
+// .idrs-countdown__grid {
+//     display: flex;
+//     gap: 14px;
+//     flex-wrap: wrap;
+// }
 
 .idrs-tile {
     min-width: 98px;
@@ -1067,11 +1049,9 @@ $sec-padd: max(4rem, 7vw);
 
 .idrs-tile__num {
     display: block;
-    font-family: 'IBM Plex Serif', Georgia, serif;
-    font-weight: 600;
+    font-family: var(--font1-bold);
     font-size: 46px;
     line-height: 1;
-    font-variant-numeric: tabular-nums;
 }
 
 .idrs-tile--accent .idrs-tile__num {

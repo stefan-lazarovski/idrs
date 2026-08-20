@@ -75,9 +75,9 @@ const {
       </div>
     </div>
 
-    <div class="cursor-follower"></div>
+    <!-- <div class="cursor-follower"></div> -->
 
-    <div class="gradient-top" style="--top: 0%; --right: 0%;"></div>
+    <!-- <div class="gradient-top" style="--top: 0%; --right: 0%;"></div> -->
 
     <header class="site-header">
       <div class="container mx-auto flex justify-between items-center">
@@ -89,7 +89,7 @@ const {
             <!-- <li><a href="/">Home</a></li> -->
             <!-- <li><a href="/projects" class="underline-effect py-2">projects</a></li>
             <li><a href="/contact" class="underline-effect py-2">contact</a></li> -->
-            <li><a href="/" class="scrollto underline-effect py-2">About</a></li>
+            <li><a href="/#about-marker" class="scrollto underline-effect py-2">About</a></li>
             <li><a href="/#agenda-marker" class="scrollto underline-effect py-2">Agenda</a></li>
             <li><a href="/#speakers-marker" class="scrollto underline-effect py-2">Speakers</a></li>
             <li><a href="/#contact-marker" class="scrollto underline-effect py-2">Contact</a></li>
@@ -105,10 +105,10 @@ const {
             <Icon name="close" class="w-8 h-8" />
           </button> -->
           <ul>
-            <li><a href="/#about-marker" class="drawer-link underline-effect py-2">about</a></li>
-            <li><a href="/#skills-marker" class="drawer-link underline-effect py-2">skills</a></li>
-            <li><a href="/#projects-marker" class="drawer-link underline-effect py-2">projects</a></li>
-            <li><a href="/#contact-marker" class="drawer-link underline-effect py-2">contact</a></li>
+            <li><a href="/#about-marker" class="drawer-link underline-effect py-2">About</a></li>
+            <li><a href="/#agenda-marker" class="drawer-link underline-effect py-2">Agenda</a></li>
+            <li><a href="/#speakers-marker" class="drawer-link underline-effect py-2">Speakers</a></li>
+            <li><a href="/#contact-marker" class="drawer-link underline-effect py-2">Contact</a></li>
           </ul>
         </nav>
       </div>
@@ -131,7 +131,7 @@ const {
       </div>
     </footer>
 
-    <div class="glow-gradient" style="--right: 0%; --bottom: 0%;"></div>
+    <!-- <div class="glow-gradient" style="--right: 0%; --bottom: 0%;"></div> -->
 
     <script src="../assets/js/main.js"></script>
 
@@ -165,32 +165,32 @@ const {
   }
 
   // Custom Cursor Follower
-  const initCursor = () => {
-    if ("ontouchstart" in window) return;
-    const $el = document.querySelector(".cursor-follower");
-    if (!$el) return;
+  // const initCursor = () => {
+  //   if ("ontouchstart" in window) return;
+  //   const $el = document.querySelector(".cursor-follower");
+  //   if (!$el) return;
 
-    const updateCursor = (e: MouseEvent) => {
-      const { target, clientX, clientY } = e;
-      const isTargetLinkOrBtn = (target as HTMLElement)?.closest("a") || (target as HTMLElement)?.closest("button");
+  //   const updateCursor = (e: MouseEvent) => {
+  //     const { target, clientX, clientY } = e;
+  //     const isTargetLinkOrBtn = (target as HTMLElement)?.closest("a") || (target as HTMLElement)?.closest("button");
 
-      gsap.to($el, {
-        x: clientX + 3,
-        y: clientY + 3,
-        duration: 0.7,
-        ease: "power4.out",
-        opacity: isTargetLinkOrBtn ? 0.6 : 1,
-        scale: isTargetLinkOrBtn ? 3 : 1,
-      });
-    };
+  //     gsap.to($el, {
+  //       x: clientX + 3,
+  //       y: clientY + 3,
+  //       duration: 0.7,
+  //       ease: "power4.out",
+  //       opacity: isTargetLinkOrBtn ? 0.6 : 1,
+  //       scale: isTargetLinkOrBtn ? 3 : 1,
+  //     });
+  //   };
 
-    const hideCursor = () => {
-      gsap.to($el, { duration: 0.7, opacity: 0 });
-    };
+  //   const hideCursor = () => {
+  //     gsap.to($el, { duration: 0.7, opacity: 0 });
+  //   };
 
-    document.addEventListener("mousemove", updateCursor);
-    document.addEventListener("mouseleave", hideCursor);
-  };
+  //   document.addEventListener("mousemove", updateCursor);
+  //   document.addEventListener("mouseleave", hideCursor);
+  // };
 
   // Preloader Logic
   const initPreloader = () => {
@@ -230,6 +230,6 @@ const {
 
   // Run initialization
   initSmoothScroll();
-  initCursor();
+  // initCursor();
   initPreloader();
 </script>

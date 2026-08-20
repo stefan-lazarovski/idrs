@@ -14,43 +14,34 @@ import "swiper/css/pagination";
 <Layout
   title="Lorem ipsum dolor sit amet"
   description="Lorem ipsum dolor sit amet"
-  ogImage="/seo/meta_image.jpg"
->
+  ogImage="/seo/meta_image.jpg">
   <div data-astro-transition="none">
     <section class="hero-banner">
       <img src="/shape.png" alt="IDRS" class="shape" />
       <div class="hero-wrapper h-full border">
         <div class="container h-full flex items-center">
           <div class="content text-white lg:w-2/3">
-            <span class="badge mb-7"
-              >Arbitration · Mediation · Skopje 2026</span
-            >
-            <h1 class="!text-white mb-10">
-              International Conference on Dispute Resolution
-            </h1>
+            <p class="badge mb-7">
+				<span>Arbitration</span> ·
+				<span>Mediation</span> ·
+				<span>Skopje 2026</span></p>
+            <h1 class="!text-white mb-10">International Conference on Dispute Resolution</h1>
             <p class="text-slate-400 mb-10">
-              Two days of practice, policy and dialogue on commercial
-              arbitration and mediation — convened by the Institute for
-              Democratic Development and Cooperation, Skopje.
+              Two days of practice, policy and dialogue on commercial arbitration and mediation —
+              convened by the Institute for Democratic Development and Cooperation, Skopje.
             </p>
-            <div class="flex gap-10 mb-10">
-              <p
-                class="flex items-center gap-3 text-(--font2-regular) whitespace-nowrap"
-              >
-                <Icon name="diamond" class="w-3 h-3 text-yellow-500" /> 12–13 November
-                2026
+            <div class="flex flex-col md:flex-row gap-5 md:gap-10 mb-10">
+              <p class="flex items-center gap-3 font2-regular whitespace-nowrap">
+                <Icon name="diamond" class="w-3 h-3 text-yellow-500" /> 12–13 November 2026
               </p>
-              <p
-                class="flex items-center gap-3 text-(--font2-regular) whitespace-nowrap"
-              >
-                <Icon name="diamond" class="w-3 h-3 text-yellow-500" /> Porta Macedonia
-                Centre, Skopje
+              <p class="flex items-center gap-3 font2-regular whitespace-nowrap">
+                <Icon name="diamond" class="w-3 h-3 text-yellow-500" /> Porta Macedonia Centre, Skopje
               </p>
             </div>
             <!-- ============ MARKUP ============ -->
             <div class="idrs-countdown">
               <!-- <p class="idrs-countdown__label">Countdown to opening</p> -->
-              <div class="idrs-countdown__grid">
+              <div class="idrs-countdown__grid grid grid-cols-2 gap-5 md:grid-cols-4">
                 <div class="idrs-tile">
                   <span class="idrs-tile__num" id="cd-days">--</span>
                   <span class="idrs-tile__unit">Days</span>
@@ -74,6 +65,7 @@ import "swiper/css/pagination";
       </div>
     </section>
 
+    <span id="about-marker"></span>
     <section class="about-section section-padding--y">
       <div class="container">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10">
@@ -82,8 +74,16 @@ import "swiper/css/pagination";
             <h2 class="section-title">A forum for resolving disputes and building trust</h2>
           </div>
           <div class="col-right">
-            <p class="mb-5">The IDRS Conference brings together arbitrators, mediators, judges, in-house counsel and academics from across Southeast Europe and beyond to examine how alternative dispute resolution can serve businesses, institutions and citizens.</p>
-            <p class="mb-10">Across keynotes, panels and practical workshops, participants explore the evolving frameworks of commercial arbitration and the growing role of mediation in cross-border and public-sector disputes.</p>
+            <p class="mb-5">
+              The IDRS Conference brings together arbitrators, mediators, judges, in-house counsel
+              and academics from across Southeast Europe and beyond to examine how alternative
+              dispute resolution can serve businesses, institutions and citizens.
+            </p>
+            <p class="mb-10">
+              Across keynotes, panels and practical workshops, participants explore the evolving
+              frameworks of commercial arbitration and the growing role of mediation in cross-border
+              and public-sector disputes.
+            </p>
             <div class="stats flex gap-5 lg:gap-10">
               <div class="stat--item border-t-2 border-yellow-500 pt-5">
                 <p class="text-4xl mb-3 font1-semibold text-(--idrs-primary-700)">2</p>
@@ -103,18 +103,23 @@ import "swiper/css/pagination";
       </div>
     </section>
 
+    <span id="agenda-marker"></span>
     <section class="agenda-section section-padding--y bg-gradient">
       <div class="container">
         <div class="section-header mb-5">
           <p class="supertitle mb-5 text-accent">Program</p>
           <h2 class="section-title mb-3 !text-white">Two-day agenda</h2>
-          <p class="text-(--idrs-text-on-dark-muted)">Sessions run 09:00–17:30 both days at the Porta Macedonia Centre.</p>
+          <p class="text-(--idrs-text-on-dark-muted)">
+            Sessions run 09:00–17:30 both days at the Porta Macedonia Centre.
+          </p>
         </div>
         <div class="agenda-wrapper grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20">
           <div class="col">
             <div class="flex gap-5 border-b border-slate-600 py-5">
               <span class="text-accent text-2xl font1-bold">Day 1</span>
-              <span class="text-(--idrs-text-on-dark-muted) font2-regular uppercase">12 November · Arbitration</span>
+              <span class="text-(--idrs-text-on-dark-muted) font2-regular uppercase"
+                >12 November · Arbitration</span
+              >
             </div>
             <div class="flex gap-5 lg:gap-10 border-b border-slate-600 py-5">
               <span class="time text-accent font1-regular">09:00</span>
@@ -148,7 +153,9 @@ import "swiper/css/pagination";
           <div class="col">
             <div class="flex gap-5 border-b border-slate-600 py-5">
               <span class="text-accent text-2xl font1-bold">Day 2</span>
-              <span class="text-(--idrs-text-on-dark-muted) font2-regular uppercase">13 November · Arbitration</span>
+              <span class="text-(--idrs-text-on-dark-muted) font2-regular uppercase"
+                >13 November · Arbitration</span
+              >
             </div>
             <div class="flex gap-5 lg:gap-10 border-b border-slate-600 py-5">
               <span class="time text-accent font1-regular">09:00</span>
@@ -176,79 +183,110 @@ import "swiper/css/pagination";
       </div>
     </section>
 
+    <span id="speakers-marker"></span>
     <section class="speakers section-padding--y bg-light">
       <div class="container">
         <div class="section-header mb-10">
           <p class="supertitle text-gold mb-3">Speakers</p>
           <h2 class="section-title">Voices from the field</h2>
         </div>
-        <div class="speakers-wrapper grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 sm:gap-10">
-          <div class="speaker-card p-5 bg-white w-fit">
+        <div
+          class="speakers-wrapper grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-10">
+          <div class="speaker-card p-5 bg-white w-fit rounded-lg">
             <div class="thumbnail mb-5">
-              <img src="https://placehold.co/300x400" alt="IDRS" loading="lazy">
+              <img src="https://placehold.co/300x400" alt="IDRS" loading="lazy" class="w-full h-full object-cover rounded-lg" />
             </div>
             <h4>Dr. Elena Petrovska</h4>
             <span class="block mb-5 text-sm text-gold font2-regular">Arbitrator · ICC Court</span>
-            <p class="leading-[1.5] text-sm">Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
+            <p class="leading-[1.5] text-sm">
+              Lorem ipsum dolor, sit amet consectetur adipisicing.
+            </p>
           </div>
-          <div class="speaker-card p-5 bg-white w-fit">
+          <div class="speaker-card p-5 bg-white w-fit rounded-lg">
             <div class="thumbnail mb-5">
-              <img src="https://placehold.co/300x400" alt="IDRS" loading="lazy">
+              <img src="https://placehold.co/300x400" alt="IDRS" loading="lazy" class="w-full h-full object-cover rounded-lg" />
             </div>
             <h4>Marko Anastasov</h4>
             <span class="block mb-5 text-sm text-gold font2-regular">Accredited Mediator</span>
-            <p class="leading-[1.5] text-sm">Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
+            <p class="leading-[1.5] text-sm">
+              Lorem ipsum dolor, sit amet consectetur adipisicing.
+            </p>
           </div>
-          <div class="speaker-card p-5 bg-white w-fit">
+          <div class="speaker-card p-5 bg-white w-fit rounded-lg">
             <div class="thumbnail mb-5">
-              <img src="https://placehold.co/300x400" alt="IDRS" loading="lazy">
+              <img src="https://placehold.co/300x400" alt="IDRS" loading="lazy" class="w-full h-full object-cover rounded-lg" />
             </div>
             <h4>Prof. Ана Јовановиќ</h4>
             <span class="block mb-5 text-sm text-gold font2-regular">Faculty of Law, Skopje</span>
-            <p class="leading-[1.5] text-sm">Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
+            <p class="leading-[1.5] text-sm">
+              Lorem ipsum dolor, sit amet consectetur adipisicing.
+            </p>
           </div>
-          <div class="speaker-card p-5 bg-white w-fit">
+          <div class="speaker-card p-5 bg-white w-fit rounded-lg">
             <div class="thumbnail mb-5">
-              <img src="https://placehold.co/300x400" alt="IDRS" loading="lazy">
+              <img src="https://placehold.co/300x400" alt="IDRS" loading="lazy" class="w-full h-full object-cover rounded-lg" />
             </div>
             <h4>James Whitfield KC</h4>
             <span class="block mb-5 text-sm text-gold font2-regular">Barrister · London</span>
-            <p class="leading-[1.5] text-sm">Lorem ipsum dolor, sit amet consectetur adipisicing.</p>
+            <p class="leading-[1.5] text-sm">
+              Lorem ipsum dolor, sit amet consectetur adipisicing.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
+    <span id="contact-marker"></span>
     <section class="getintouch bg-gradient text-white section-padding--y">
       <div class="container">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
           <div class="col-text">
             <p class="supertitle text-accent mb-3">Contact</p>
-            <h2 class="section-title !text-white mb-[2vw]">Get in touch</h2>
+            <h2 class="section-title !text-white mb-10 lg:mb-[2vw]">Get in touch</h2>
             <div class="info">
               <div class="info-box mb-7">
-                <p class="text-sm text-muted mb-2 uppercase font2-regular tracking-[.25em]">Venue</p>
-                <p>Porta Macedonia Conference Centre<br>Bulevar VMRO, 1000 Skopje<br>North Macedonia</p>
+                <p class="text-sm text-muted mb-2 uppercase font2-regular tracking-[.25em]">
+                  Venue
+                </p>
+                <p>
+                  Porta Macedonia Conference Centre<br />Bulevar VMRO, 1000 Skopje<br />North
+                  Macedonia
+                </p>
               </div>
               <div class="flex gap-10 mb-7">
                 <div class="info-box">
-                  <p class="text-sm text-muted mb-2 uppercase font2-regular tracking-[.25em]">Phone</p>
+                  <p class="text-sm text-muted mb-2 uppercase font2-regular tracking-[.25em]">
+                    Phone
+                  </p>
                   <a href="tel:+389 2 300 1200" class="underline-effect">+389 2 300 1200</a>
                 </div>
                 <div class="info-box">
-                  <p class="text-sm text-muted mb-2 uppercase font2-regular tracking-[.25em]">Email</p>
+                  <p class="text-sm text-muted mb-2 uppercase font2-regular tracking-[.25em]">
+                    Email
+                  </p>
                   <a href="mailto:info@idrs.mk" class="underline-effect">info@idrs.mk</a>
                 </div>
               </div>
               <div class="info-box mb-7">
-                <p class="text-sm text-muted mb-2 uppercase font2-regular tracking-[.25em]">Organizer</p>
-                <p>Институт за демократски развој и соработка <br>
-Institute for Democratic Development and Cooperation · Skopje</p>
+                <p class="text-sm text-muted mb-2 uppercase font2-regular tracking-[.25em]">
+                  Organizer
+                </p>
+                <p>
+                  Институт за демократски развој и соработка <br />
+                  Institute for Democratic Development and Cooperation · Skopje
+                </p>
               </div>
             </div>
           </div>
           <div class="col-map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5134.199090901657!2d20.80096337729617!3d41.07604661524744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1350c3611117153b%3A0x84c34dab510b125b!2sHotel%20Tino%20Sveti%20Stefan!5e1!3m2!1sen!2smk!4v1787232213824!5m2!1sen!2smk" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5134.199090901657!2d20.80096337729617!3d41.07604661524744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1350c3611117153b%3A0x84c34dab510b125b!2sHotel%20Tino%20Sveti%20Stefan!5e1!3m2!1sen!2smk!4v1787232213824!5m2!1sen!2smk"
+              width="100%"
+              height="450"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"></iframe>
           </div>
         </div>
       </div>
@@ -272,7 +310,7 @@ Institute for Democratic Development and Cooperation · Skopje</p>
       seconds: document.getElementById("cd-seconds"),
     };
 
-    var pad = function (n) {
+    var pad = function (n: number) {
       return String(n).padStart(2, "0");
     };
 
@@ -286,53 +324,14 @@ Institute for Democratic Development and Cooperation · Skopje</p>
       diff -= m * 60000;
       var s = Math.floor(diff / 1000);
 
-      els.days.textContent = pad(d);
-      els.hours.textContent = pad(h);
-      els.minutes.textContent = pad(m);
-      els.seconds.textContent = pad(s);
+      // Using optional chaining (?.), TypeScript checks for null automatically
+      if (els.days) els.days.textContent = pad(d);
+      if (els.hours) els.hours.textContent = pad(h);
+      if (els.minutes) els.minutes.textContent = pad(m);
+      if (els.seconds) els.seconds.textContent = pad(s);
     }
 
     tick();
     setInterval(tick, 1000);
   })();
-
-  // function animateHero() {
-  //   const tl = gsap.timeline();
-
-  //   tl.to("#hero-title", {
-  //     opacity: 1,
-  //     y: 0,
-  //     duration: 0.8,
-  //     ease: "power3.out",
-  //   }).to(
-  //     "#hero-subtitle",
-  //     {
-  //       opacity: 1,
-  //       duration: 0.6,
-  //       ease: "power2.out",
-  //     },
-  //     "-=0.4",
-  //   );
-  // }
-
-  // // FIX: Check if we've already visited. If yes, animate immediately.
-  // // If not, wait for the preloader to tell us it's done.
-  // if (sessionStorage.getItem("visited") === "true") {
-  //   animateHero();
-  // } else {
-  //   document.addEventListener("preloaderFinished", animateHero);
-  // }
-
-  // // Swiper Init (unchanged)
-  // const sliderElement = document.querySelector(".my-slider");
-  // if (sliderElement) {
-  //   new Swiper(sliderElement as HTMLElement, {
-  //     modules: [Navigation, Pagination],
-  //     loop: true,
-  //     pagination: {
-  //       el: ".swiper-pagination",
-  //       clickable: true,
-  //     },
-  //   });
-  // }
 </script>
