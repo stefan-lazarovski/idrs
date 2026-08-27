@@ -1,0 +1,62 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { languages, defaultLang } from "../i18n/ui";
+
+const currentLocale = (Astro.currentLocale ?? defaultLang) as keyof typeof languages;
+
+// Remove the locale prefix so we can re-apply the right one per language.
+// Only non-default locales have a prefix here (prefixDefaultLocale: false).
+function stripLocale(pathname: string): string {
+  const segments = pathname.split("/"); // ["", "en", "about"] or ["", "about"]
+  const maybe = segments[1];
+  if (maybe && maybe in languages && maybe !== defaultLang) {
+    segments.splice(1, 1); // drop the locale segment
+  }
+  const path = segments.join("/");
+  return path === "" ? "/" : path;
+}
+
+const basePath = stripLocale(Astro.url.pathname).replace(/^\//, ""); // bare path, no leading slash
+const query = Astro.url.search; // preserve ?params on switch
+---
+
+<nav class="language-switcher" aria-label="Language">
+  {
+    Object.entries(languages).map(([lang, label]) => {
+      const isActive = lang === currentLocale;
+      const href = getRelativeLocaleUrl(lang, basePath) + query;
+      return (
+        <a
+          href={href}
+          hreflang={lang}
+          lang={lang}
+          aria-current={isActive ? "true" : undefined}
+          class:list={["lang-link", { active: isActive }]}>
+          {lang}
+        </a>
+      );
+    })
+  }
+</nav>
+
+<style>
+  .language-switcher {
+    display: flex;
+    align-items: center;
+  }
+  .lang-link {
+    padding: 0.2rem 1rem;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+  }
+  .lang-link:hover {
+    opacity: 1;
+  }
+  .lang-link.active {
+    opacity: 1;
+    font-weight: 600;
+  }
+  .lang-link:nth-child(1) {
+    border-right: 1px solid #e7e7e7;
+  }
+</style>

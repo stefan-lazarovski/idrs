@@ -5,6 +5,14 @@ import { Icon } from "astro-icon/components";
 import "../styles/global.css";
 import "../assets/scss/main.scss";
 
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { useTranslations } from "../i18n/utils";
+import LanguageSwitcher from "../components/LanguageSwitcher.astro";
+
+const currentLocale = Astro.currentLocale ?? "mk";
+const t = useTranslations(currentLocale);
+const home = getRelativeLocaleUrl(currentLocale, ""); // "/" for mk, "/en/" for en
+
 interface Props {
   title?: string;
   description?: string;
@@ -16,12 +24,12 @@ const {
   title = "Conference",
   description = "lorem ipsum dolor sit amet",
   ogImage = "/seo/meta_image.jpg", // Make sure this is in your public/ folder
-  canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://stefdev.org")
+  canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://stefdev.org"),
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={currentLocale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -48,30 +56,26 @@ const {
     <slot name="head" />
 
     <title>{title}</title>
-  
+
     <script is:inline>
       if (sessionStorage.getItem("visited")) {
         document.documentElement.classList.add("preloader-skipped");
       }
     </script>
-    
+
     <style>
       /* Immediately hide the curtain if the skip class is present on <html> */
       :global(.preloader-skipped) #transition-curtain {
         display: none !important;
       }
     </style>
-
   </head>
-  <body
-    class="bg-slate-50 text-slate-900 antialiased min-h-screen flex flex-col relative"
-  >
+  <body class="bg-slate-50 text-slate-900 antialiased min-h-screen flex flex-col relative">
     <div
       id="transition-curtain"
-      class="fixed inset-0 bg-(--dark) z-[9999] pointer-events-auto flex items-center justify-center"
-    >
+      class="fixed inset-0 bg-(--dark) z-[9999] pointer-events-auto flex items-center justify-center">
       <div id="preloader-logo" class="text-white font-bold text-3xl tracking-widest opacity-0">
-        <img src="/logo_light.svg" alt="StefDev" class="w-5rem"/>
+        <img src="/logo_light.svg" alt="StefDev" class="w-5rem" />
       </div>
     </div>
 
@@ -85,15 +89,25 @@ const {
           <img src="/logo.svg" alt="Conference" />
         </a>
         <nav class="main-navigation flex justify-end">
-          <ul class="flex gap-3">
-            <!-- <li><a href="/">Home</a></li> -->
-            <!-- <li><a href="/projects" class="underline-effect py-2">projects</a></li>
-            <li><a href="/contact" class="underline-effect py-2">contact</a></li> -->
-            <li><a href="/#about-marker" class="scrollto underline-effect py-2">About</a></li>
-            <li><a href="/#agenda-marker" class="scrollto underline-effect py-2">Agenda</a></li>
-            <li><a href="/#speakers-marker" class="scrollto underline-effect py-2">Speakers</a></li>
-            <li><a href="/#contact-marker" class="scrollto underline-effect py-2">Contact</a></li>
+          <ul class="flex gap-3 mr-5">
+            <li>
+              <a href={`${home}#about-marker`} class="scrollto underline-effect py-2"
+                >{t("nav.about")}</a>
+            </li>
+            <li>
+              <a href={`${home}#agenda-marker`} class="scrollto underline-effect py-2"
+                >{t("nav.agenda")}</a>
+            </li>
+            <li>
+              <a href={`${home}#speakers-marker`} class="scrollto underline-effect py-2"
+                >{t("nav.speakers")}</a>
+            </li>
+            <li>
+              <a href={`${home}#contact-marker`} class="scrollto underline-effect py-2"
+                >{t("nav.contact")}</a>
+            </li>
           </ul>
+		  <LanguageSwitcher />
         </nav>
         <button id="navBtn" class="md:hidden" aria-label="Toggle mobile menu">
           <span class="line line1"></span>
@@ -107,8 +121,12 @@ const {
           <ul>
             <li><a href="/#about-marker" class="drawer-link underline-effect py-2">About</a></li>
             <li><a href="/#agenda-marker" class="drawer-link underline-effect py-2">Agenda</a></li>
-            <li><a href="/#speakers-marker" class="drawer-link underline-effect py-2">Speakers</a></li>
-            <li><a href="/#contact-marker" class="drawer-link underline-effect py-2">Contact</a></li>
+            <li>
+              <a href="/#speakers-marker" class="drawer-link underline-effect py-2">Speakers</a>
+            </li>
+            <li>
+              <a href="/#contact-marker" class="drawer-link underline-effect py-2">Contact</a>
+            </li>
           </ul>
         </nav>
       </div>
@@ -120,13 +138,17 @@ const {
     <ScrollToTop />
 
     <span id="contact-marker"></span>
-    <footer class="site-footer bg-(--idrs-primary-800) text-white border-t border-slate-600 py-5" id="main-footer">
+    <footer
+      class="site-footer bg-(--idrs-primary-800) text-white border-t border-slate-600 py-5"
+      id="main-footer">
       <div class="container h-full">
         <div class="content flex flex-col gap-5 sm:flex-row sm:gap-10 justify-between items-center">
           <a href="/" class="footer-logo">
-            <img src="/logo.svg" alt="Conference" class="h-[5rem]"/>
+            <img src="/logo.svg" alt="Conference" class="h-[5rem]" />
           </a>
-          <p class="font2-regular text-muted text-center sm:text-justify">© 2026 IDRS · Skopje · International Conference on Dispute Resolution</p>
+          <p class="font2-regular text-muted text-center sm:text-justify">
+            © 2026 IDRS · Skopje · International Conference on Dispute Resolution
+          </p>
         </div>
       </div>
     </footer>
@@ -134,7 +156,6 @@ const {
     <!-- <div class="glow-gradient" style="--right: 0%; --bottom: 0%;"></div> -->
 
     <script src="../assets/js/main.js"></script>
-
   </body>
 </html>
 
@@ -155,9 +176,15 @@ const {
     // Native momentum scroll on touch / reduced-motion — Lenis only on pointer devices.
     if (isTouch || prefersReducedMotion) return;
 
+    // Declare in the function scope, not inside the if-block.
+    const header = document.querySelector(".site-header");
+    const scrollOffset = header ? header.offsetHeight : 0;
+
     window.lenis = new Lenis({
       duration: 1.2,
-      anchors: true,
+      anchors: {
+        offset: -scrollOffset, // negative: stop *above* the target by the header's height
+      },
     });
 
     gsap.ticker.add((time) => window.lenis?.raf(time * 1000));
@@ -219,12 +246,15 @@ const {
           curtain.remove();
           sessionStorage.setItem("visited", "true");
           document.dispatchEvent(new CustomEvent("preloaderFinished"));
-        }
+        },
       });
 
       // Logo fades in, then the whole curtain (logo included) sweeps up and out.
-      tl.to(logo, { opacity: 1, y: -8, duration: 0.3, ease: "power2.out" })
-        .to(curtain, { yPercent: -100, duration: 0.5, ease: "power3.inOut" }, "-=0.05");
+      tl.to(logo, { opacity: 1, y: -8, duration: 0.3, ease: "power2.out" }).to(
+        curtain,
+        { yPercent: -100, duration: 0.5, ease: "power3.inOut" },
+        "-=0.05",
+      );
     }
   };
 

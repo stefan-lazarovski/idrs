@@ -3,6 +3,7 @@ window.addEventListener('DOMContentLoaded', function () {
     const navBtn = document.querySelector('#navBtn');
     const mobileMenu = document.querySelector('.mobile-menu');
     const header = document.querySelector('.site-header');
+    console.log(header.offsetHeight);
     const CLOSE_MS = 300; // keep in sync with the CSS transition
 
     // Single source of truth — button, Escape, and links all route through this

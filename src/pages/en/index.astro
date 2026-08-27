@@ -1,11 +1,11 @@
 ---
 // src/pages/index.astro
-import Layout from "../layouts/Layout.astro";
+import Layout from "../../layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
-import HomeContent from "../components/HomeContent.astro";
-import { useTranslations } from "../i18n/utils";
+import HomeContent from "../../components/HomeContent.astro";
+import { useTranslations } from "../../i18n/utils";
 
 const lang = Astro.currentLocale ?? "mk";
 const t = useTranslations(lang);

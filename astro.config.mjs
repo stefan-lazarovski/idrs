@@ -9,7 +9,14 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://stefdev.org',
+    site: 'https://somedomain.mk',
+    i18n: {
+        locales: ["mk", "en"],
+        defaultLocale: "mk",
+        routing: {
+        prefixDefaultLocale: false, // mk → "/", en → "/en/"
+        },
+    },
     vite: {
         plugins: [tailwindcss()]
     },
