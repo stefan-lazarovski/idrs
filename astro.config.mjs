@@ -9,7 +9,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://somedomain.mk',
+    site: 'https://github.com/stefan-lazarovski/idrs',
     i18n: {
         locales: ["mk", "en"],
         defaultLocale: "mk",
