@@ -5,6 +5,7 @@ import { Icon } from "astro-icon/components";
 import "../styles/global.css";
 import "../assets/scss/main.scss";
 
+import { asset } from "../utils/asset";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { useTranslations } from "../i18n/utils";
 import LanguageSwitcher from "../components/LanguageSwitcher.astro";
@@ -85,8 +86,8 @@ const {
 
     <header class="site-header">
       <div class="container mx-auto flex justify-between items-center">
-        <a href="/" class="header-logo">
-          <img src="/logo.svg" alt="Conference" />
+        <a href={home} class="header-logo">
+          <img src={asset("logo.svg")} alt="Conference" />
         </a>
         <nav class="main-navigation flex justify-end">
           <ul class="flex gap-3 mr-5">
@@ -143,8 +144,9 @@ const {
       id="main-footer">
       <div class="container h-full">
         <div class="content flex flex-col gap-5 sm:flex-row sm:gap-10 justify-between items-center">
-          <a href="/" class="footer-logo">
-            <img src="/logo.svg" alt="Conference" class="h-[5rem]" />
+          <a href={home} class="footer-logo">
+            <!-- <img src="/logo.svg" alt="Conference" class="h-[5rem]" /> -->
+			<img src={asset("logo.svg")} alt="Conference" />
           </a>
           <p class="font2-regular text-muted text-center sm:text-justify">
             © 2026 IDRS · Skopje · International Conference on Dispute Resolution

@@ -1,10 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-
 import tailwindcss from '@tailwindcss/vite';
-
 import icon from 'astro-icon';
-
 import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
@@ -15,12 +12,11 @@ export default defineConfig({
         locales: ["mk", "en"],
         defaultLocale: "mk",
         routing: {
-        prefixDefaultLocale: false, // mk → "/", en → "/en/"
+            prefixDefaultLocale: false, // mk → /idrs/, en → /idrs/en/
         },
     },
     vite: {
         plugins: [tailwindcss()]
     },
-
     integrations: [icon(), sitemap()]
 });

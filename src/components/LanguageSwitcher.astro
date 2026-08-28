@@ -4,19 +4,30 @@ import { languages, defaultLang } from "../i18n/ui";
 
 const currentLocale = (Astro.currentLocale ?? defaultLang) as keyof typeof languages;
 
-// Remove the locale prefix so we can re-apply the right one per language.
-// Only non-default locales have a prefix here (prefixDefaultLocale: false).
-function stripLocale(pathname: string): string {
-  const segments = pathname.split("/"); // ["", "en", "about"] or ["", "about"]
+// Astro.url.pathname includes the base ("/idrs") AND, for non-default locales,
+// the locale segment ("/en"). getRelativeLocaleUrl adds BOTH back, so strip
+// both here first — otherwise you get /idrs/en/idrs/.
+const base = import.meta.env.BASE_URL.replace(/\/$/, ""); // "/idrs" (or "" at root)
+
+function toCleanPath(pathname: string): string {
+  let path = pathname;
+
+  // 1. drop the base prefix
+  if (base && (path === base || path.startsWith(base + "/"))) {
+    path = path.slice(base.length) || "/";
+  }
+
+  // 2. drop a leading locale segment (only non-default locales have one)
+  const segments = path.split("/"); // ["", "en", "about"] or ["", "about"]
   const maybe = segments[1];
   if (maybe && maybe in languages && maybe !== defaultLang) {
-    segments.splice(1, 1); // drop the locale segment
+    segments.splice(1, 1);
   }
-  const path = segments.join("/");
-  return path === "" ? "/" : path;
+
+  return segments.join("/").replace(/^\//, ""); // bare path — no base, no locale
 }
 
-const basePath = stripLocale(Astro.url.pathname).replace(/^\//, ""); // bare path, no leading slash
+const cleanPath = toCleanPath(Astro.url.pathname);
 const query = Astro.url.search; // preserve ?params on switch
 ---
 
@@ -24,7 +35,7 @@ const query = Astro.url.search; // preserve ?params on switch
   {
     Object.entries(languages).map(([lang, label]) => {
       const isActive = lang === currentLocale;
-      const href = getRelativeLocaleUrl(lang, basePath) + query;
+      const href = getRelativeLocaleUrl(lang, cleanPath) + query;
       return (
         <a
           href={href}
